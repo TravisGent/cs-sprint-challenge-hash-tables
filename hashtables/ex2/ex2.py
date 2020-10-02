@@ -4,6 +4,13 @@ class Ticket:
         self.source = source
         self.destination = destination
 
+#   ticket_1 = Ticket("NONE", "PDX")
+#   ticket_2 = Ticket("PDX", "DCA")
+#   ticket_3 = Ticket("DCA", "NONE")
+#
+#   tickets = [ticket_1, ticket_2, ticket_3]
+#
+#   expected = ["PDX", "DCA", "NONE"]
 
 def reconstruct_trip(tickets, length):
     newHashTable = HashTable(length)
@@ -14,6 +21,14 @@ def reconstruct_trip(tickets, length):
     route = []
 
     currentValue = newHashTable.get("NONE")
+    route.append(currentValue.destination)
+
+    i = 1
+
+    while i < length:
+        currentValue = newHashTable.get(currentValue.destination)
+        route.append(currentValue.destination)
+        i += 1
 
     return route
 
